@@ -1,0 +1,28 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h3>Confirm Payment</h3>
+    <p>Please enter your 4-digit PIN to confirm the payment.</p>
+
+    <div class="payment-summary">
+      <div class="summary-item">
+        <strong>Amount:</strong> {{ paymentData?.amount }} {{ paymentData?.currency }}
+      </div>
+      <div class="summary-item">
+        <strong>To:</strong> {{ paymentData?.toCardNumber }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="pin">PIN</label>
+      <input id="pin" type="password" [formControl]="pinControl" placeholder="Enter 4-digit PIN" />
+      <div class="error" *ngIf="pinControl.touched && pinControl.invalid">
+        PIN is required and must be 4 digits.
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" [disabled]="pinControl.value?.length !== 4" (click)="confirmPin()">Confirm Payment</button>
+      <button type="button" class="secondary" (click)="cancel()">Cancel</button>
+    </div>
+  </div>
+</div>

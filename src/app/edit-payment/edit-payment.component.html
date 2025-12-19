@@ -1,0 +1,38 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h3>Edit Payment</h3>
+
+    <form [formGroup]="form" (ngSubmit)="savePayment()">
+      <div class="form-group">
+        <label>Amount</label>
+        <input type="number" formControlName="amount" />
+        <div class="error" *ngIf="form.get('amount')?.touched && form.get('amount')?.invalid">
+          Amount is required and must be greater than 0.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Currency</label>
+        <select formControlName="currency">
+          <option>USD</option>
+          <option>EUR</option>
+          <option>INR</option>
+          <option>GBP</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Recipient Card Number</label>
+        <input type="text" formControlName="toCardNumber" placeholder="Enter 16-digit card number" />
+        <div class="error" *ngIf="form.get('toCardNumber')?.touched && form.get('toCardNumber')?.invalid">
+          Card number is required and must be 16 digits.
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="submit" [disabled]="form.invalid">Save</button>
+        <button type="button" class="secondary" (click)="cancel()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

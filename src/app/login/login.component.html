@@ -1,0 +1,19 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    <h1 class="title">Payments Portal</h1>
+    <h2 class="subtitle">Login</h2>
+    <form [formGroup]="form" (ngSubmit)="login()" class="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" formControlName="username" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" formControlName="password" />
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="form.invalid">Login</button>
+    </form>
+  </div>
+</div>

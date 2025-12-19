@@ -1,0 +1,45 @@
+<div class="card">
+  <!-- Header -->
+  <div class="header">
+    <h2>Transactions History</h2>
+
+    <button *ngIf="isLoggedIn()" class="btn btn-secondary logout-btn" (click)="logout()">
+      Logout
+    </button>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <button class="btn btn-primary" routerLink="/add-payment">
+      ➕ Add Payment
+    </button>
+  </div>
+
+  <!-- Table -->
+  <table class="payments-table">
+    <thead>
+      <tr>
+        <th>Reference</th>
+        <th>Amount</th>
+        <th>Currency</th>
+        <th>Type</th>
+        <th>Counterparty</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let payment of payments">
+        <td>{{ payment.reference }}</td>
+        <td>{{ payment.amount }}</td>
+        <td>{{ payment.currency }}</td>
+        <td>{{ payment.fromCard.user.username === username ? 'DEBIT' : 'CREDIT' }}</td>
+        <td>{{ payment.fromCard.user.username === username ? payment.toCard.user.username : payment.fromCard.user.username }}</td>
+        <td>{{ payment.createdAt | date:'short' }}</td>
+        <td>
+          <button class="btn btn-link" [routerLink]="['/edit-payment', payment.id]">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
